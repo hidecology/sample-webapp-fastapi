@@ -5,4 +5,4 @@ up:
 	python -m uvicorn main:app --reload
 
 test:
-	curl -v -X GET http://localhost:8000/hello/senzoku
+	curl -v -X GET http://localhost:8000/hello?name=senzoku

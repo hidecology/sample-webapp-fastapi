@@ -6,7 +6,7 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
-# パスパラメータを受け取る
-@app.get("/hello/{name}")
+# クエリパラメータを受け取る
+@app.get("/hello")
 async def hello(name):
     return {"message": "Hello {0}".format(name)}
