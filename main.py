@@ -9,5 +9,6 @@ async def root():
 # リクエストボディを受け取る
 @app.post("/study")
 async def createStudy(req: Request):
-    body = await req.body()
+    body = await req.json()
+    print(body['name'])
     return body
