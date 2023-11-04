@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 
 app = FastAPI()
 
@@ -6,7 +6,8 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
-# クエリパラメータを受け取る
-@app.get("/hello")
-async def hello(name):
-    return {"message": "Hello {0}".format(name)}
+# リクエストボディを受け取る
+@app.post("/study")
+async def createStudy(req: Request):
+    body = await req.body()
+    return body
