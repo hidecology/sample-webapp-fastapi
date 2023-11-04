@@ -1,4 +1,9 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+class StudentRecord(BaseModel):
+    name: str
+    age: int
 
 app = FastAPI()
 
@@ -8,7 +13,6 @@ async def root():
 
 # リクエストボディを受け取る
 @app.post("/study")
-async def createStudy(req: Request):
-    body = await req.json()
-    print(body['name'])
-    return body
+async def createStudy(rec: StudentRecord):
+    print(rec.name, rec.age)
+    return rec.name
