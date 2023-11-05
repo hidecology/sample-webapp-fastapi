@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Request, HTTPException
 
 app = FastAPI()
 
@@ -15,3 +15,14 @@ async def getAllMidTermResult(subject):
         return result
     except Exception as e:
         raise HTTPException(status_code=404, detail="Resource not found")
+
+@app.post("/midTermResults")
+async def updateMidTermResult(req: Request):
+    body = await req.json()
+    for key in body.keys():
+        value = body[key]
+        if isinstance(value, int):
+            midTermResults[key] = int(value)
+        else:
+            raise HTTPException(status_code=400, detail="Invalid request")
+    return ""
